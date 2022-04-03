@@ -3,8 +3,7 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String out = "98";
-        out.replace('9', '8');
+
         int a[] = { 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 27, 30, 32, 36, 40, 45, 48, 50, 54, 60, 64,
                 72, 75, 80, 81, 90, 96, 100, 108, 120, 125, 128, 135, 144, 150, 160, 162, 180, 192, 200, 216, 225, 240,
                 243, 250, 256, 270, 288, 300, 320, 324, 360, 375, 384, 400, 405, 432, 450, 480, 486, 500, 512, 540, 576,
@@ -140,6 +139,26 @@ public class Test {
                 777600000, 781250000, 786432000, 787320000, 791015625, 796262400, 797161500, 800000000, 805306368,
                 806215680, 810000000, 816293376, 819200000, 820125000, 829440000, 838860800, 839808000, 843750000,
                 849346560, 850305600, 854296875, 859963392 };
-        System.out.print(a[0]);
+
+        for (int j = 1; j <= 1500; j++) {
+            PriorityQueue<Long> q = new PriorityQueue<Long>();
+            q.add(1L);
+            Long last = 0L;
+            for (int i = 0; i < j - 1; i++) {
+                Long temp = q.poll();
+                while (temp.equals(last)) {
+                    temp = q.poll();
+                }
+                last = temp;
+                q.add(temp * 2);
+                q.add(temp * 3);
+                q.add(temp * 5);
+            }
+            Long x = q.poll();
+            if (x != a[j - 1]) {
+                System.out.println(j);
+                return;
+            }
+        }
     }
 }

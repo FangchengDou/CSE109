@@ -21,7 +21,11 @@ public class POJ_1338 {
                 q.add(temp * 3);
                 q.add(temp * 5);
             }
-            System.out.println(q.poll());
+            Long temp = q.poll();
+            while (temp.equals(last)) {
+                temp = q.poll();
+            }
+            System.out.println(temp);
             n = in.nextInt();
         }
     }
